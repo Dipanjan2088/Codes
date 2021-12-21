@@ -1,0 +1,66 @@
+#include<stdio.h>
+#include<stdlib.h>
+int stc[100],c,s,t=-1,v,i;
+void push();
+void pop();
+void display();
+int main()
+{
+    printf("\n Enter the size of STACK: ");
+    scanf("%d", &s);
+    printf("\n STACK OPERATIONS USING ARRAY");
+    printf("\n 1.PUSH\n 2.POP\n 3.DISPLAY\n 4.EXIT");
+    while (1)
+    {
+        printf("\nEnter the Choice: ");
+        scanf("%d", &c);
+        switch (c)
+        {
+        	case 1:
+            	push();
+            	break;
+        	case 2:
+            	pop();
+            	break;
+        	case 3:
+            	display();
+            	break;
+        	case 4:
+            	exit(1);
+        }
+    }
+    return 0;    
+}
+void push()
+{
+    if (t == s - 1)
+        printf("\nSTACK is over flow");
+    else
+    {
+        printf("\nEnter a value to be pushed: ");
+        scanf("%d", &v);
+        t++;
+        stc[t] = v;
+    }
+}
+void pop()
+{
+    if (t == -1)
+        printf("\nStack is under flow");
+    else
+    {
+        printf("\nThe popped element is %d", stc[t]);
+        t--;
+    }
+}
+void display()
+{
+    if (t != -1)
+    {
+        printf("\nThe elements in STACK \n");
+        for (i = t; i >= 0; i--)
+            printf("\n\t%d", stc[i]);
+    }
+    else
+        printf("\nThe STACK is empty");
+}
