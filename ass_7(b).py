@@ -1,0 +1,8 @@
+s1=input('Enter the 1st statement: ')
+s2=input('Enter the 2nd statement: ')
+l1=s1.split()
+l2=s2.split()
+t1=set(l1)
+t2=set(l2)
+t3=t1.intersection(t2)
+print(t3)

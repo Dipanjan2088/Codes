@@ -1,0 +1,5 @@
+print('The Email should be writen in "username@companyname.com" format. Both username and company name are composed of letters only.')
+s = input("Enter the e-mail: ")
+r = s.find('@')
+j = s.find('.')
+print(s[r+1:j])
