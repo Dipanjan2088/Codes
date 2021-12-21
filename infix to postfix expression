@@ -1,0 +1,81 @@
+#include<stdio.h>
+#include<ctype.h>
+#define MAX 10
+int tos=-1;
+char stck[MAX];
+void push(char x)
+{
+	if(tos==MAX-1)
+		printf("\nOverflow");
+	else
+	{
+		tos++;
+		stck[tos]=x;
+	}
+}
+char pop()
+{
+	char y='\0';
+	if(tos==-1)
+		printf("\nUnderflow");
+	else
+	{
+		y=stck[tos];
+		tos--;
+	}
+	return y;
+}
+int preced(char x)
+{
+	if(x=='^')
+		return 3;
+	else if(x=='*' || x=='/')
+		return 2;
+	else if(x=='+' || x=='-')
+		return 1;
+	else
+		return 0;
+}
+int main()
+{
+	int i=0,j=0;
+	char q[100],p[100],x;
+	printf("\nEnter your infix expression, appended ) at the end: ");
+	gets(q);
+	push('(');
+	while(q[i]!='\0')
+	{
+		if(isalpha(q[i]))
+		{
+			p[j]=q[i];
+			j++;
+		}
+		else
+		{
+			if(q[i]=='(')
+				push(q[i]);
+			else if(q[i]==')')
+			{
+				x=pop();
+				while (x!='(')
+				{
+					p[j]=x;
+					j++;
+					x=pop();
+				}
+			}
+			else
+			{
+				while(preced(stck[tos])>=preced(q[i]))
+				{
+					p[j]=pop();
+					j++;
+				}
+				push(q[i]);
+			}
+		}
+		i++;
+	}
+	p[j]='\0';
+	puts(p);
+}
