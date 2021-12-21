@@ -1,0 +1,62 @@
+#include <stdio.h>
+int main()
+{
+    int a[50][50],b[50][3],i,j,nzero=0,r,c,sr,t=0,s;
+    printf("Enter the numbers of rows and columns:");
+    scanf("%d %d",&r,&c);
+    for(i=0;i<r;i++)
+    {
+        printf("Enter %d elements for the row %d:\n",c,i+1);
+        for(j=0;j<c;j++)
+        {
+            scanf("%d",&a[i][j]);
+            if(a[i][j]!=0)
+               nzero++;
+            if(a[i][j]==0)
+               t++;
+        }
+    }
+    if(t>(r*c)/2)
+    {
+        sr=nzero+1;
+        b[0][0]=r;
+        b[0][1]=c;
+        b[0][2]=nzero;
+        s=1;
+        printf("Entered matrix is:\n");
+        for(i=0;i<r;i++)
+        {
+            for(j=0;j<c;j++)
+            {
+                printf("%6d",a[i][j]);
+                if(a[i][j]!=0)
+                {
+                    b[s][0]=i;
+                    b[s][1]=j;
+                    b[s][2]=a[i][j];
+                    s++;
+                }
+            }
+            printf("\n");
+        }
+        printf("Sparse matrix is:\n");
+        for(i=0;i<sr;i++)
+        {
+            for(j=0;j<3;j++)
+               printf("%6d",b[i][j]);
+            printf("\n");
+        }
+    }
+    else
+       {
+           printf("The entered matrix is:\n");
+           for(i=0;i<r;i++)
+           {
+               for(j=0;j<c;j++)
+                  printf("%6d",a[i][j]);
+               printf("\n");
+           }
+           printf("The entered matrix is not a sparse matrix");
+       }
+    return 0;
+}
