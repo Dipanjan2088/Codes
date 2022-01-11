@@ -1,21 +1,40 @@
-class StLine:
+class SqrArea:
     def __init__(self,l=None):
         if l is None:
             self.length=eval(input('Enter the length: '))
         else:
             self.length=l
-            print('A straight line has been created of length ',self.length)    
-class SqrArea(StLine):
+        print('Object SqrArea has created ')
+    def cal_area(self):
+        return self.length*self.length
+    def __del__(self):
+        print('Object has been destructed')
+class SqrPeri:
+    def __init__(self,l=None):
+        if l is None:
+            self.length=eval(input('Enter the length: '))
+        else:
+            self.length=l
+        print('Object SqrPeri has created ') 
+    def calc_area(self):
+        return 4*self.length
+    def __del__(self):
+        print('Object has been destructed')           
+class Square(SqrArea,SqrPeri):
     def __init__(self,l=None):
         if l is None:
             super().__init__()
         else:
             super().__init__(l)
-            print('A Square has been created of length ',self.length)    
-    def calc_area(self):
-        return self.length*self.length
-class SqrPeri(StLine):
-    pass
-l=eval(input('Enter the length:'))
-a=SqrArea(l)
-print('Total area of cube is ',a.calc_area())
+        print('Object Square has created ')
+    def Show(self):
+        return super().calc_area(),super().cal_area()
+    def __del__(self):
+       print('Object has been destructed')             
+f=eval(input('Enter the length:'))
+a=SqrArea(f)
+print('Area of square is ',a.cal_area())
+b=SqrPeri(f)
+print('Peripheral of square is ',b.calc_area())
+d=Square(f)
+print(d.Show())
