@@ -1,0 +1,12 @@
+#!/bin/bash
+apt-get update
+apt-get install -y nginx
+systemct1 start nginx
+systemct1 enable nginx
+apt-get install -y git
+curl -sl https://deb.nodesource.com/setup_16.x | sudo -E bash -
+apt-get install -y nodejs
+git clone https://github.com/Dipanjan2088/AWS-Dip-.git
+cd New-Repo1
+npm install
+node index.js
